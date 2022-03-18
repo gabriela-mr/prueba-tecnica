@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+ 
+
+  const [ejemplo, setEjemplo] = React.useState([])
+
+      React.useEffect(() => {
+    console.log('useEffect')
+    obtenerDatos()
+      
+    },[])
+  
+
+  const obtenerDatos = async () => {
+
+    const data = await fetch ('https://api.datos.gob.mx/v2/Records')
+    const usuarios = await data.json()
+    console.log(usuarios)
+    setEjemplo(usuarios)
+  }
+
+
+return (
+
+    <div>
+      <h1> Datos de API</h1>
+      </div>
+
+)
+
+
 }
-
 export default App;
